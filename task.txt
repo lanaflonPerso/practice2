@@ -1,9 +1,8 @@
-Практическое задание №2
+РџСЂР°РєС‚РёС‡РµСЃРєРѕРµ Р·Р°РґР°РЅРёРµ в„–2
 _______________________
 
-Задание 1
-
-1.1. Создать интерфейс MyList следующего содержания:
+Р—Р°РґР°РЅРёРµ 1
+1.1. РЎРѕР·РґР°С‚СЊ РёРЅС‚РµСЂС„РµР№СЃ MyList СЃР»РµРґСѓСЋС‰РµРіРѕ СЃРѕРґРµСЂР¶Р°РЅРёСЏ:
 
 -------------------------------------------------------
 public interface MyList {
@@ -35,269 +34,122 @@ public interface MyList {
 }
 -------------------------------------------------------
 
-1.2. Создать класс MyListImpl, который реализует MyList.
+1.2. РЎРѕР·РґР°С‚СЊ РєР»Р°СЃСЃ MyListImpl, РєРѕС‚РѕСЂС‹Р№ СЂРµР°Р»РёР·СѓРµС‚ MyList.
 
-1.3. Переопределить метод toString таким образом, чтобы результат выводился в виде:
+1.3. РџРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ РјРµС‚РѕРґ toString С‚Р°РєРёРј РѕР±СЂР°Р·РѕРј, С‡С‚РѕР±С‹ СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РІРѕРґРёР»СЃСЏ РІ РІРёРґРµ:
+-------------------------------------------------------
+    [e.toString(), e2.toString(), ... ]
+-------------------------------------------------------
+РіРґРµ e, e2, ... - СЌР»РµРјРµРЅС‚С‹ РєРѕРЅС‚РµР№РЅРµСЂР°
+
+1.4. РЎРѕР·РґР°С‚СЊ РєР»Р°СЃСЃ Demo, РєРѕС‚РѕСЂС‹Р№ РґРµРјРѕРЅСЃС‚СЂРёСЂСѓРµС‚ СЂР°Р±РѕС‚Сѓ РІСЃРµС… РјРµС‚РѕРґРѕРІ РєРѕРЅС‚РµР№РЅРµСЂР° (СЃРј. Р·Р°РјРµС‡Р°РЅРёСЏ РІРЅРёР·Сѓ).
+______________________
+
+
+Р—Р°РґР°РЅРёРµ 2
+2.1. Р”РѕР±Р°РІРёС‚СЊ Рє РёРЅС‚РµСЂС„РµР№СЃСѓ MyList РЅР°СЃР»РµРґРѕРІР°РЅРёРµ РёРЅС‚РµСЂС„РµР№СЃР° Iterable<Object> (java.lang.Iterable).
+-------------------------------------------------------
+    MyList extends Iterable<Object>
+-------------------------------------------------------
+
+Р РµР°Р»РёР·РѕРІР°С‚СЊ РІ РєРѕРЅС‚РµР№РЅРµСЂРµ MyListImpl РјРµС‚РѕРґ
+-------------------------------------------------------
+    public Iterator<Object> iterator() {
+        return new IteratorImpl();
+    }
+-------------------------------------------------------
+
+РєРѕС‚РѕСЂС‹Р№ РІРѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ РІРЅСѓС‚СЂРµРЅРЅРµРіРѕ РєР»Р°СЃСЃР° IteratorImpl:
 
 -------------------------------------------------------
-[e.toString(), e2.toString(), ... ]
+    private class IteratorImpl implements Iterator<Object> {
+
+        // returns true if the iteration has more elements
+        public boolean hasNext() { 
+            // ...
+        }
+
+        // returns the next element in the iteration
+        public Object next() { 
+            // ...
+        }
+
+        // removes from the underlying collection 
+        // the last element returned by this iterator
+        public void remove() { 
+            // ...
+        }
+    }
 -------------------------------------------------------
 
-где e, e2, ... - элементы контейнера
+РђР»РіРѕСЂРёС‚Рј РІ РјРµС‚РѕРґРµ remove РјРѕР¶РµС‚ Р±С‹С‚СЊ СЃР»РµРґСѓСЋС‰РёРј:
 
-1.4. Создать класс Demo, который демонстрирует работу всех методов контейнера (см. замечания внизу).
+-------------------------------------------------------
+Р•РЎР›Р РџР•Р Р•Р” Р’Р«Р—РћР’РћРњ remove РќР• Р‘Р«Р› Р’Р«Р—Р’РђРќ РњР•РўРћР” next
+РР›Р РџР•Р Р•Р” Р’Р«Р—РћР’РћРњ remove Р‘Р«Р› Р’Р«Р—Р’РђРќ remove (РїРѕРІС‚РѕСЂРЅС‹Р№ РІС‹Р·РѕРІ remove)
+    РўРћ Р’Р«Р‘Р РћРЎРРўР¬ РРЎРљР›Р®Р§Р•РќРР• (С‚Р°Рє Рё РІСЃС‚Р°РІРёС‚СЊ РІ РєРѕРґ): throw new IllegalStateException();
+Р’ Р”РђРќРќРћРњ РњР•РЎРўР• РћРџР Р•Р”Р•Р›РРўР¬ Р РЈР”РђР›РРўР¬ РЎРћРћРўР’Р•РўРЎРўР’РЈР®Р©РР™ Р­Р›Р•РњР•РќРў
+-------------------------------------------------------
 
+2.2. РџСЂРѕРґРµРјРѕРЅСЃС‚СЂРёСЂРѕРІР°С‚СЊ СЂР°Р±РѕС‚Сѓ РёС‚РµСЂР°С‚РѕСЂР° (СЃРј. РєРѕРґ РєР»Р°СЃСЃР° Demo).
 _______________________
 
-Задание 2
 
-2.1. Добавить к интерфейсу MyList наследование интерфейса Iterable<Object> (java.lang.Iterable).
-
+Р—Р°РґР°РЅРёРµ 3
+3.1. РћРїСЂРµРґРµР»РёС‚СЊ РёРЅС‚РµСЂС„РµР№СЃ ListIterator:
 -------------------------------------------------------
-MyList extends Iterable<Object>
--------------------------------------------------------
+    interface ListIterator extends java.util.Iterator<Object> {
+        // returns true if this list iterator has more 
+        // elements when traversing the list 
+        // in the reverse direction
+        boolean hasPrevious(); 
 
-Реализовать в контейнере MyListImpl метод
 
--------------------------------------------------------
-public Iterator<Object> iterator() {
-    return new IteratorImpl();
-}
--------------------------------------------------------
+        // returns the previous element in the list 
+        // and moves the cursor position backwards
+        Object previous(); 
 
-который возвращает объект внутреннего класса IteratorImpl:
 
--------------------------------------------------------
-private class IteratorImpl implements Iterator<Object> {
+        // replaces the last element returned by next 
+        // or previous with the specified element
+        void set(Object e); 
 
-    // returns true if the iteration has more elements
-    public boolean hasNext() { 
-        // ...
+        // removes from the list the last element 
+        // that was returned by next or previous
+        void remove(); 
     }
+-------------------------------------------------------
 
-    // returns the next element in the iteration
-    public Object next() { 
-        // ...
+РњРµС‚РѕРґС‹ set/remove РјРѕРіСѓС‚ Р±С‹С‚СЊ РІС‹Р·РІР°РЅС‹ С‚РѕР»СЊРєРѕ РїРѕСЃР»Рµ next/previous. 
+РџРѕРІС‚РѕСЂРЅС‹Р№ РІС‹Р·РѕРІ (РїРѕРґСЂСЏРґ) set/remove РІР»РµС‡РµС‚ РІС‹Р±СЂРѕСЃ РёСЃРєР»СЋС‡РµРЅРёСЏ IllegalStateException (СЃРј. Рї. 2.1.)
+
+3.2. РЎРѕР·РґР°С‚СЊ РёРЅС‚РµСЂС„РµР№СЃ ListIterable:
+
+-------------------------------------------------------
+    interface ListIterable {
+        ListIterator listIterator();
     }
+-------------------------------------------------------
 
-    // removes from the underlying collection 
-    // the last element returned by this iterator
-    public void remove() { 
-        // ...
+3.3. Р”РѕР±Р°РІРёС‚СЊ Рє РєР»Р°СЃСЃСѓ MyListImpl СЂРµР°Р»РёР·Р°С†РёСЋ РёРЅС‚РµСЂС„РµР№СЃР° ListIterable:
+-------------------------------------------------------
+    class MyListImpl implements MyList, ListIterable {...}
+-------------------------------------------------------
+
+3.4. Р”РѕР±Р°РІРёС‚СЊ РІ РєР»Р°СЃСЃ MyListImpl РјРµС‚РѕРґ
+-------------------------------------------------------
+    public ListIterator listIterator() {
+        return new ListIteratorImpl();
     }
-}
 -------------------------------------------------------
 
-Алгоритм в методе remove может быть следующим:
+РєРѕС‚РѕСЂС‹Р№ РІРѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ РІРЅСѓС‚СЂРµРЅРЅРµРіРѕ РєР»Р°СЃСЃР° ListIteratorImpl:
 
 -------------------------------------------------------
-ЕСЛИ ПЕРЕД ВЫЗОВОМ remove НЕ БЫЛ ВЫЗВАН МЕТОД next
-ИЛИ ПЕРЕД ВЫЗОВОМ remove БЫЛ ВЫЗВАН remove (повторный вызов remove)
-    ТО ВЫБРОСИТЬ ИСКЛЮЧЕНИЕ (так и вставить в код): throw new IllegalStateException();
-В ДАННОМ МЕСТЕ ОПРЕДЕЛИТЬ И УДАЛИТЬ СООТВЕТСТВУЮЩИЙ ЭЛЕМЕНТ
+    private class ListIteratorImpl extends IteratorImpl implements ListIterator {
+        // IMPLEMENT ALL METHODS HERE!!!
+    }
 -------------------------------------------------------
 
-2.2. Продемонстрировать работу итератора (см. код класса Demo).
-
+3.5. РџСЂРѕРґРµРјРѕРЅСЃС‚СЂРёСЂРѕРІР°С‚СЊ СЂР°Р±РѕС‚Сѓ РёС‚РµСЂР°С‚РѕСЂР° ListIterator (СЃРј. РєРѕРґ РєР»Р°СЃСЃР° Demo).
 _______________________
-
-Задание 3
-
-3.1. Определить интерфейс ListIterator:
-
--------------------------------------------------------
-interface ListIterator extends java.util.Iterator<Object> {
-    // returns true if this list iterator has more 
-    // elements when traversing the list 
-    // in the reverse direction
-    boolean hasPrevious(); 
-
-    
-    // returns the previous element in the list 
-    // and moves the cursor position backwards
-    Object previous(); 
-
-
-    // replaces the last element returned by next 
-    // or previous with the specified element
-    void set(Object e); 
-
-    // removes from the list the last element 
-    // that was returned by next or previous
-    void remove(); 
-}
--------------------------------------------------------
-
-Методы set/remove могут быть вызваны только после next/previous. 
-Повторный вызов (подряд) set/remove влечет выброс исключения IllegalStateException (см. п. 2.1.)
-
-3.2. Создать интерфейс ListIterable:
-
--------------------------------------------------------
-interface ListIterable {
-    ListIterator listIterator();
-}
--------------------------------------------------------
-
-3.3. Добавить к классу MyListImpl реализацию интерфейса ListIterable:
-
--------------------------------------------------------
-class MyListImpl implements MyList, ListIterable {...}
--------------------------------------------------------
-
-3.4. Добавить в класс MyListImpl метод
--------------------------------------------------------
-public ListIterator listIterator() {
-    return new ListIteratorImpl();
-}
--------------------------------------------------------
-
-который возвращает объект внутреннего класса ListIteratorImpl:
-
--------------------------------------------------------
-private class ListIteratorImpl extends IteratorImpl implements ListIterator {
-    // IMPLEMENT ALL METHODS HERE!!!
-}
--------------------------------------------------------
-
-3.5. Продемонстрировать работу итератора ListIterator (см. код класса Demo).
-
-_______________________
-
-Замечания
-
-1. Результат должен быть представлен в виде проекта с именем Practice2.
-
-2. Корневой пакет для всех классов и прочих пакетов (если они потребуются): 
-ua.nure.your_last_name.Practice2, где your_last_name - ваш логин без кода проекта.
-
-3. Дополнительно в корневой пакет положить класс Demo, который демонстриует работу всех подзадач.
-Содержимое класса Demo должно быть таким каким оно дано в самом конце документа.
-Скопировать и вставить как есть.
-В комментариях - информация, какой вывод должен у вас быть.
-Перед заливкой в репозиторий убедиться, что приложение генерирует правильный результат.
-
-4. Проект загрузить в репозиторий, проверить, успешность сборки в Jenkins, оптимизировать метрики в Sonar.
-
-_______________________
-
-Содержимое класса Demo
--------------------------------------------------------
-package ua.nure.your_last_name.Practice2;
-
-import java.util.Iterator;
-
-public class Demo {
-    public static void main(String[] args) {
-        System.out.println("==== Part1");
-        MyList list = new MyListImpl();
-        // [A, A2]
-        list.add("A");
-        list.add("A2");
-        System.out.println(list);
-        // []
-        list.clear();
-        System.out.println(list);
-        // [A, A3]
-        list.add("A");
-        list.add("A2");
-        list.add("A3");
-        list.remove("A2");
-        System.out.println(list);
-        // AA3
-        for (Object el : list.toArray()) {
-            System.out.print(el);
-        }
-        System.out.println();
-        // 2
-        System.out.println(list.size());
-        // false
-        System.out.println(list.contains("B"));
-        // true
-        System.out.println(list.contains("A3"));
-        // true
-        list.add("A2");
-        MyList anotherList = new MyListImpl();
-        anotherList.add("A");
-        anotherList.add("A2");
-        System.out.println(list.containsAll(anotherList));
-        // false
-        anotherList.add("B");
-        System.out.println(list.containsAll(anotherList));
-        // true
-        list.add("B");
-        System.out.println(list.containsAll(anotherList));
-
-        System.out.println("==== Part2");
-
-        list = new MyListImpl();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-
-        // 1 2 3 4
-        Iterator<Object> it = list.iterator();
-        while (it.hasNext()) {
-            System.out.print(it.next() + " ");
-        }
-        System.out.println();
-        // [1, 3, 4]
-        it = list.iterator();
-        it.next();
-        it.next();
-        it.remove();
-        System.out.println(list);
-
-        // 3
-        System.out.println(it.next());
-
-        // [1, 4]
-        it.remove();
-        System.out.println(list);
-
-        // class java.lang.IllegalStateException
-        try {
-            it.remove();
-        } catch (IllegalStateException ex) {
-            System.out.println(ex.getClass());
-        }
-        System.out.println("==== Part3");
-
-        list = new MyListImpl();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-
-        // 1 2 3 4
-        ListIterator lit = ((ListIterable)list).listIterator();
-        while (lit.hasNext()) {
-            System.out.print(lit.next() + " ");
-        }
-        System.out.println();
-        // 4 3 2 1
-        while (lit.hasPrevious()) {
-            System.out.print(lit.previous() + " ");
-        }
-        System.out.println();
-
-        list = new MyListImpl();
-        lit = ((ListIterable)list).listIterator();
-        // false
-        System.out.println(lit.hasNext());
-
-        // false
-        System.out.println(lit.hasPrevious());
-        // Elemenet
-        list.add("Element");
-        System.out.println(lit.next());
-
-        // false
-        System.out.println(lit.hasNext());
-
-        // true
-        System.out.println(lit.hasPrevious());
-    }
-}
-------------------------------------------------------
